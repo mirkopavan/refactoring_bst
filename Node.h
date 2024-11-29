@@ -12,11 +12,14 @@ private:
     Node* rchild;
 
 public:
-    Node(int key);
-
+    Node(int k);
     Node* insertR(int k);
-
+    Node *insertI(int k);
+    Node *searchR(int k);
+    Node *searchI(int k);
     void inOrder();
+    void postOrder();
+    void preOrder();
 };
 
 #endif
