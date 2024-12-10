@@ -22,6 +22,8 @@ public:
     void preOrder();
     bool isBst();
     Node* deleteNode(int k); 
+    friend istream& operator>>(istream& is, Node& n);
+    friend ostream& operator<<(ostream& os, const Node& n);
 };
 
 #endif

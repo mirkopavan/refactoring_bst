@@ -189,3 +189,17 @@ Node* Node::deleteNode(int k) {
     }
     return this;
 }
+
+ostream& operator<<(ostream& os, const Node& n) {
+    os << "data: " << n.data << ", weight: " << n.weight;
+    return os;
+}
+
+istream& operator>>(istream& is, Node& n) {
+    is >> n.data;
+    n.lchild = nullptr;
+    n.rchild = nullptr;
+    n.weight = 1;
+    return is;
+}
+
