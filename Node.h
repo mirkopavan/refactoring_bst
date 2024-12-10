@@ -14,12 +14,14 @@ private:
 public:
     Node(int k);
     Node* insertR(int k);
-    Node *insertI(int k);
-    Node *searchR(int k);
-    Node *searchI(int k);
+    Node* insertI(int k);
+    Node* searchR(int k);
+    Node* searchI(int k);
     void inOrder();
     void postOrder();
     void preOrder();
+    bool isBst();
+    Node* deleteNode(int k); 
 };
 
 #endif

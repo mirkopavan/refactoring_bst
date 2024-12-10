@@ -7,6 +7,9 @@ Node::Node(int k)
 
 
 Node* Node::insertR(int k) {
+    if(this==nullptr){
+        return new Node(k);
+    }
     if(k==data){
         weight++;
         return this;
@@ -29,7 +32,7 @@ Node* Node::insertR(int k) {
 
 Node* Node::insertI(int k){
     if(this==nullptr){
-        return this;
+        return new Node(k);
     }
 
     Node* current=this;
@@ -73,6 +76,25 @@ Node* Node::searchR(int k){
     return this;
 }
 
+Node* Node::searchI(int k){
+
+       Node* current = this;
+     
+    while (current != nullptr) {
+        if (k == current->data) {
+            return this;
+
+        } else if (k < current->data) {
+            
+            current = current->lchild;
+        } else {
+            current = current->rchild;
+        }
+    }
+    return nullptr;
+}
+
+
 void Node::inOrder() {
 
     if (lchild != nullptr){
@@ -84,5 +106,86 @@ void Node::inOrder() {
     if (rchild != nullptr){ 
         rchild->inOrder(); 
     }
+     
+}
+
+void Node::preOrder(){
+
+    cout << data << " "; 
+        if (lchild != nullptr){
+        lchild->preOrder();
+    }
         
+    if (rchild != nullptr){ 
+        rchild->preOrder(); 
+    }
+}
+
+void Node::postOrder(){
+      
+        if (lchild != nullptr){
+        lchild->preOrder();
+    }
+        
+    if (rchild != nullptr){ 
+        rchild->preOrder(); 
+    }
+      cout << data << " "; 
+}
+
+bool Node::isBst(){
+
+    if (this==nullptr){
+        return true;
+    }
+    if(rchild==nullptr){
+        return false;
+    }else if(rchild->data>data){
+        rchild->isBst();
+    }
+
+
+      if(lchild==nullptr){
+        return false;
+    }else if(lchild->data<data){
+        lchild->isBst();
+    }
+    }
+
+
+
+Node* Node::deleteNode(int k) {
+    if (k < data) {
+        if (lchild != nullptr) {
+            lchild = lchild->deleteNode(k);
+        }
+    } else if (k > data) {
+        if (rchild != nullptr) {
+            rchild = rchild->deleteNode(k);
+        }
+    } else {
+        if (lchild==nullptr && rchild==nullptr) {
+            delete this;
+            return nullptr;
+
+        } else if (lchild == nullptr) {
+            Node* t = rchild;
+            delete this;
+            return t;
+
+        } else if (rchild == nullptr) {
+            Node* t = lchild;
+            delete this;
+            return t;
+
+        } else {
+            Node* minNode = rchild;
+            while (minNode->lchild != nullptr) {
+                minNode = minNode->lchild;
+            }
+            data = minNode->data;  
+            rchild = rchild->deleteNode(minNode->data); 
+        }
+    }
+    return this;
 }
